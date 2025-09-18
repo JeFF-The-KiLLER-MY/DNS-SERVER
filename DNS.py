@@ -10,6 +10,21 @@ HOST = "0.0.0.0"   # listen on all interfaces
 PORT = 5353       # high port so we don't need sudo
 RESPONSE_IP = "127.0.0.1"  # IP to return for every query
 
+# -----------------------------
+# TOOL Banner
+# -----------------------------
+JEFF = r"""
+    _____            ________  ________        ________  __                        __    __  __  __        __        ________  _______  
+   |     \          |        \|        \      |        \|  \                      |  \  /  \|  \|  \      |  \      |        \|       \ 
+    \$$$$$  ______  | $$$$$$$$| $$$$$$$$       \$$$$$$$$| $$____    ______        | $$ /  $$ \$$| $$      | $$      | $$$$$$$$| $$$$$$$\
+      | $$ /      \ | $$__    | $$__             | $$   | $$    \  /      \       | $$/  $$ |  \| $$      | $$      | $$__    | $$__| $$
+ __   | $$|  $$$$$$\| $$  \   | $$  \            | $$   | $$$$$$$\|  $$$$$$\      | $$  $$  | $$| $$      | $$      | $$  \   | $$    $$
+|  \  | $$| $$    $$| $$$$$   | $$$$$            | $$   | $$  | $$| $$    $$      | $$$$$\  | $$| $$      | $$      | $$$$$   | $$$$$$$\
+| $$__| $$| $$$$$$$$| $$      | $$               | $$   | $$  | $$| $$$$$$$$      | $$ \$$\ | $$| $$_____ | $$_____ | $$_____ | $$  | $$
+ \$$    $$ \$$     \| $$      | $$               | $$   | $$  | $$ \$$     \      | $$  \$$\| $$| $$     \| $$     \| $$     \| $$  | $$
+  \$$$$$$   \$$$$$$$ \$$       \$$                \$$    \$$   \$$  \$$$$$$$       \$$   \$$ \$$ \$$$$$$$$ \$$$$$$$$ \$$$$$$$$ \$$   \$$
+"""
+
 class DNSHandler(BaseRequestHandler):
     def handle(self):
         data, sock = self.request
@@ -26,6 +41,7 @@ class DNSHandler(BaseRequestHandler):
         sock.sendto(reply.pack(), self.client_address)
 
 if __name__ == "__main__":
+    print(LOGO)
     print(f"Starting DNS server on {HOST}:{PORT}, answering with {RESPONSE_IP}")
     with UDPServer((HOST, PORT), DNSHandler) as server:
         server.serve_forever()
