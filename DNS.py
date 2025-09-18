@@ -11,9 +11,9 @@ PORT = 5353       # high port so we don't need sudo
 RESPONSE_IP = "127.0.0.1"  # IP to return for every query
 
 # -----------------------------
-# TOOL Banner
+# Logo Banner
 # -----------------------------
-JEFF = r"""
+LOGO = r"""
     _____            ________  ________        ________  __                        __    __  __  __        __        ________  _______  
    |     \          |        \|        \      |        \|  \                      |  \  /  \|  \|  \      |  \      |        \|       \ 
     \$$$$$  ______  | $$$$$$$$| $$$$$$$$       \$$$$$$$$| $$____    ______        | $$ /  $$ \$$| $$      | $$      | $$$$$$$$| $$$$$$$\
@@ -45,3 +45,5 @@ if __name__ == "__main__":
     print(f"Starting DNS server on {HOST}:{PORT}, answering with {RESPONSE_IP}")
     with UDPServer((HOST, PORT), DNSHandler) as server:
         server.serve_forever()
+
+
